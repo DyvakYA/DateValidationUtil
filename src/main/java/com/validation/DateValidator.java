@@ -38,12 +38,12 @@ public class DateValidator {
                 throw new DateValidationException(String.format("Date %s must be less or equals date %s",
                         fromDate, toDate));
             }
-        } else if (from.isInclusive() & !to.isInclusive()) {
+        } else if (from.isInclusive() && !to.isInclusive()) {
             if (daysBetween <= 0) {
                 throw new DateValidationException(String.format("Date %s must be less then date %s",
                         fromDate, toDate));
             }
-        } else if (!from.isInclusive() & !to.isInclusive()) {
+        } else if (!from.isInclusive() && !to.isInclusive()) {
             if (daysBetween < 0) {
                 throw new DateValidationException(String.format("Date %s must be less or equals date %s",
                         fromDate, toDate));
@@ -69,11 +69,11 @@ public class DateValidator {
 
     // Check past and future parameters
     private static boolean checkPastAndFuture(DateContainer container) {
-        if (container.inPast & !container.inFuture) {
+        if (container.inPast && !container.inFuture) {
             if (ChronoUnit.DAYS.between(LocalDate.now().atStartOfDay().toLocalDate(), container.getDate()) > 1) {
                 throw new DateValidationException(String.format("Date %s must be in past", container.getDate().toString()));
             }
-        } else if (container.inFuture & !container.inPast) {
+        } else if (container.inFuture && !container.inPast) {
             if (ChronoUnit.DAYS.between(LocalDate.now().atStartOfDay().toLocalDate(), container.getDate()) < 1) {
                 throw new DateValidationException(String.format("Date %s must be in future", container.getDate().toString()));
             }
@@ -83,7 +83,7 @@ public class DateValidator {
 
     // check date container for DateContainer is not null and LocalDate is not null
     private static boolean validDateContainer(DateContainer dateContainer) {
-        return (dateContainer != null & dateContainer.getDate() != null) ? true : false;
+        return (dateContainer != null && dateContainer.getDate() != null) ? true : false;
     }
 
     // Overloading methods
