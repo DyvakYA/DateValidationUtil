@@ -11,7 +11,7 @@ public class DateValidator {
 
     // Main method for validation
     public static boolean validate(DateContainer from, DateContainer to) {
-        if (validDateContainer(from) & validDateContainer(to)) {
+        if (validDateContainer(from) && validDateContainer(to)) {
             checkInclusions(checkFromDateContainer(from), checkToDateContainer(to));
             checkPastAndFuture(from);
             checkPastAndFuture(to);
