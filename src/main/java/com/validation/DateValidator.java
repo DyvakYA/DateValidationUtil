@@ -30,9 +30,7 @@ public class DateValidator {
 
         log.info(String.format("Days between dates: %s", daysBetween));
 
-        log.info(String.format("Date from : %s, Date to : %s",
-                fromDate.atStartOfDay().toString(),
-                toDate.atStartOfDay().toString()));
+        log.info(String.format("Date from : %s, Date to : %s", fromDate, toDate));
         if (to.isInclusive()) {
             if (daysBetween < 0) {
                 throw new DateValidationException(String.format("Date %s must be less or equals date %s",
@@ -69,13 +67,14 @@ public class DateValidator {
 
     // Check past and future parameters
     private static boolean checkPastAndFuture(DateContainer container) {
+
         if (container.inPast && !container.inFuture) {
             if (ChronoUnit.DAYS.between(LocalDate.now().atStartOfDay().toLocalDate(), container.getDate()) > 1) {
-                throw new DateValidationException(String.format("Date %s must be in past", container.getDate().toString()));
+                throw new DateValidationException(String.format("Date %s must be in past", container.getDate()));
             }
         } else if (container.inFuture && !container.inPast) {
             if (ChronoUnit.DAYS.between(LocalDate.now().atStartOfDay().toLocalDate(), container.getDate()) < 1) {
-                throw new DateValidationException(String.format("Date %s must be in future", container.getDate().toString()));
+                throw new DateValidationException(String.format("Date %s must be in future", container.getDate()));
             }
         }
         return true;

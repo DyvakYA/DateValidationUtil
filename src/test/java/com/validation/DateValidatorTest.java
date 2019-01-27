@@ -16,7 +16,6 @@ public class DateValidatorTest {
     public void localDateTest_whenFromLessThenTo() {
         LocalDate from = LocalDate.of(2020, 12, 19);
         LocalDate to = LocalDate.of(2020, 12, 20);
-        log.info(from.atStartOfDay().toLocalTime() + " : " + to.atStartOfDay().toLocalTime());
         boolean result = validate(from, to);
         assertTrue(result);
     }
@@ -110,7 +109,7 @@ public class DateValidatorTest {
     public void localDateTest_fromInPastAndInFutureAndInclusiveAndExclusive() {
         LocalDate from = LocalDate.of(2010, 12, 12);
         LocalDate to = LocalDate.of(2012, 12, 12);
-        boolean result = validate(inFutureOff(inclusive(exclusive(exclusive(inFutureOn(inPastOn(inclusive(from))))))), to);
+        boolean result = validate(inFutureOn(inclusive(exclusive(exclusive(inFutureOn(inPastOn(inclusive(from))))))), to);
         assertTrue(result);
     }
 
