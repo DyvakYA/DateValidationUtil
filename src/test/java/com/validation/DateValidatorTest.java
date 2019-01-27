@@ -46,7 +46,8 @@ public class DateValidatorTest {
     public void localDateTest_whenFromIsExclusiveAndToIsInclusive_sameDates() {
         LocalDate from = LocalDate.of(2020, 12, 12);
         LocalDate to = LocalDate.of(2020, 12, 12);
-        validate(exclusive(from), inclusive(to));
+        boolean result = validate(exclusive(from), inclusive(to));
+        assertTrue(result);
     }
 
     @Test(expected = DateValidationException.class)
